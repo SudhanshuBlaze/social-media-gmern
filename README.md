@@ -1,11 +1,13 @@
-Social Media GraphQL+MERN APP
+### Social Media Web-App using GraphQL+MERN
 
 ## What I learned?
 
-- Apollo GraphQL
-- - Queries
-- - Mutations
-- - Subscriptions
-- React Router v6
-- Implementation of Private Routes
-- JWT for Authentication
+- Apollo **GraphQL**
+  - Queries
+  - Mutations
+  - Subscriptions
+- **JWT** for Authentication
+- **Semantic** UI
+- **Apollo** Middlewares
+- Implemented Private Routes
+- React Router **v6**
