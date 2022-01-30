@@ -1,0 +1,24 @@
+.page-title {
+  display: block !important; /*cannot be overwritten*/
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.page-title h1 {
+  font-weight: 100;
+}
+
+.form-container {
+  width: 400px;
+  margin: auto;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.ui.teal.button:focus,
+.ui.teal.buttons .button:focus {
+  background-color: #00b5ad;
+}
