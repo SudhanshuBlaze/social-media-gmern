@@ -24,6 +24,7 @@ export default function DeleteButton({ commentId, postId, callback }) {
         // we also need to delete the post from the cache, else it will keep displaying it, as we are not returning any post on deleting due to this apollo client is not automatically able to update the cache
         const data = proxy.readQuery({
           query: FETCH_POSTS_QUERY,
+          variables: postId,
         });
 
         data.getPosts = data.getPosts.filter(post => post.id !== postId);
