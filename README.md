@@ -9,7 +9,7 @@ https://user-images.githubusercontent.com/63813872/151695174-3692e04f-e475-413a-
   - Queries
   - Mutations
   - Subscriptions
-- **JWT** Authentication
+- **JWT** Authorization 
 - **Semantic** UI
 - **Apollo** Middlewares
 - Implemented Private Routes
