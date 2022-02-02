@@ -12,6 +12,7 @@ export default function PostForm() {
 
   const [createPost, { error }] = useMutation(CREATE_POST_MUTATION, {
     variables: values,
+    // Update cache manually: In this case the new post "id" can't be used to update cache because this is a "new" post and hence new id, the "id" is used to update the cache automatically only when a post of that id is already present in the cache.
     update(proxy, result) {
       const data = proxy.readQuery({
         query: FETCH_POSTS_QUERY,
@@ -56,7 +57,7 @@ export default function PostForm() {
 const CREATE_POST_MUTATION = gql`
   mutation createPost($body: String!) {
     createPost(body: $body) {
-      id
+      id #new post id, not present in cache
       body
       createdAt
       username
