@@ -16,6 +16,7 @@ import DeleteButton from "../components/DeleteButton";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import MyPopup from "../util/MyPopup";
+import { FETCH_USERS_QUERY } from "../util/fetchUsersQuery";
 
 export default function SinglePost() {
   const postId = window.location.pathname.substring(7);
@@ -28,6 +29,8 @@ export default function SinglePost() {
   const { data: { getPost } = {} } = useQuery(FETCH_POST_QUERY, {
     variables: { postId },
   });
+
+  const { data: { getUsers: users } = {} } = useQuery(FETCH_USERS_QUERY);
 
   const [submitComment] = useMutation(SUBMIT_COMMENT_MUTATION, {
     variables: { postId, body: comment },
@@ -43,7 +46,7 @@ export default function SinglePost() {
 
   let postMarkup;
 
-  if (!getPost) {
+  if (!getPost || !users) {
     postMarkup = <p>Loading..</p>;
   } else {
     const {
@@ -57,21 +60,23 @@ export default function SinglePost() {
       commentCount,
     } = getPost;
 
+    const currPostUser = users.find(user => user.username === username);
+    const defaultAvatarUrl =
+      "https://react.semantic-ui.com/images/avatar/large/molly.png";
+
+    const avatarUrl = currPostUser && (currPostUser.avatar || defaultAvatarUrl);
+
     postMarkup = (
       <Grid>
         <Grid.Row>
           <Grid.Column width={2}>
-            <Image
-              floated="right"
-              size="small"
-              src="https://react.semantic-ui.com/images/avatar/large/molly.png"
-            />
+            <Image floated="right" size="small" src={avatarUrl} />
           </Grid.Column>
 
           <Grid.Column width={10}>
             <Card fluid>
               <Card.Content>
-                <Card.Header>username</Card.Header>
+                <Card.Header>{username}</Card.Header>
                 <Card.Meta>{moment(createdAt).fromNow(true)}</Card.Meta>
                 <Card.Description>{body}</Card.Description>
               </Card.Content>

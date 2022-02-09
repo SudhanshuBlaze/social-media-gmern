@@ -5,8 +5,9 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 import { useForm } from "../util/useForm";
 import { useAuth } from "../context/auth";
+import { FETCH_USERS_QUERY } from "../util/fetchUsersQuery";
 
-export default function Register(props) {
+export default function Register() {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const { login } = useAuth();
@@ -14,6 +15,7 @@ export default function Register(props) {
   const initialState = {
     username: "",
     email: "",
+    avatar: "",
     password: "",
     confirmPassword: "",
   };
@@ -23,9 +25,23 @@ export default function Register(props) {
 
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
     // this "update" function will be triggered when the mutation is successful
-    update(_, { data: { register: userData } }) {
+    update(proxy, { data: { register: userData } }) {
+      const data = proxy.readQuery({
+        query: FETCH_USERS_QUERY,
+        variables: values,
+      });
+
+      data.getUsers = [
+        ...data.getUsers,
+        {
+          id: userData.id,
+          username: userData.username,
+          avatar: userData?.avatar,
+        },
+      ];
+      proxy.writeQuery({ query: FETCH_USERS_QUERY, variables: values, data });
+
       login(userData);
-      // console.log(userData);
       navigate("/");
     },
     onError(err) {
@@ -61,6 +77,16 @@ export default function Register(props) {
           onChange={onChange}
           error={errors.email ? true : false}
           type="email"
+        />
+
+        <Form.Input
+          label="Avatar url"
+          placeholder="Paste avatar url..."
+          name="avatar"
+          value={values.avatar}
+          onChange={onChange}
+          error={errors.avatar ? true : false}
+          type="text"
         />
 
         <Form.Input
@@ -104,6 +130,7 @@ const REGISTER_USER = gql`
   mutation register(
     $username: String!
     $email: String!
+    $avatar: String
     $password: String!
     $confirmPassword: String!
   ) {
@@ -111,6 +138,7 @@ const REGISTER_USER = gql`
       registerInput: {
         username: $username
         email: $email
+        avatar: $avatar
         password: $password
         confirmPassword: $confirmPassword
       }
@@ -118,6 +146,7 @@ const REGISTER_USER = gql`
       #get these  fields back
       id
       email
+      avatar
       username
       createdAt
       token

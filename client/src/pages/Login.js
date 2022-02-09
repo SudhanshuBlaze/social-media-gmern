@@ -6,7 +6,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { useForm } from "../util/useForm";
 import { useAuth } from "../context/auth";
 
-export default function Login(props) {
+export default function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [errors, setErrors] = useState({});
@@ -86,6 +86,7 @@ const LOGIN_USER = gql`
       #get these  fields back
       id
       email
+      avatar
       username
       createdAt
       token

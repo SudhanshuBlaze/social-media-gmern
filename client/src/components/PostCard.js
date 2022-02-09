@@ -7,22 +7,22 @@ import DeleteButton from "./DeleteButton";
 import MyPopup from "../util/MyPopup";
 
 export default function PostCard({
+  users,
   post: { body, createdAt, id, username, likeCount, commentCount, likes },
 }) {
   const { user } = useAuth();
 
-  function commentPost() {
-    console.log("comment on post");
-  }
+  const currPostUser = users.find(user => user.username === username);
+  const defaultAvatarUrl =
+    "https://react.semantic-ui.com/images/avatar/large/molly.png";
+
+  // if currPostUser exists then give its avatar else default avatar
+  const avatarUrl = currPostUser && (currPostUser.avatar || defaultAvatarUrl);
 
   return (
     <Card fluid>
       <Card.Content as={Link} to={`posts/${id}`}>
-        <Image
-          floated="right"
-          size="mini"
-          src="https://react.semantic-ui.com/images/avatar/large/molly.png"
-        />
+        <Image floated="right" size="mini" src={avatarUrl} />
         <Card.Header>{username}</Card.Header>
 
         {/* this function shows relative time of post, "true" params is to remove "ago" */}
@@ -34,12 +34,7 @@ export default function PostCard({
         <LikeButton user={user} post={{ id, likes, likeCount }} />
 
         <MyPopup content="Comment on post">
-          <Button
-            labelPosition="right"
-            onClick={commentPost}
-            as={Link}
-            to={`/posts/${id}`}
-          >
+          <Button labelPosition="right" as={Link} to={`/posts/${id}`}>
             <Button color="blue" basic>
               <Icon name="comments" />
             </Button>
