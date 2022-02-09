@@ -5,6 +5,7 @@ const userSchema = new Schema({
   password: String,
   email: String,
   createdAt: String,
+  avatar: String,
 });
 
 //returns the model which can be used to create new doc/articles,

@@ -1,4 +1,4 @@
-const postsResolvers = require("./posts");
+const postsResolver = require("./posts");
 const usersResolver = require("./users");
 const commentsResolver = require("./comments");
 const likeResolver = require("./likes");
@@ -15,16 +15,16 @@ module.exports = {
   // using spread operators because different resolvers has been put in different files
   // we need to grab hold of them and put them together here in a single object
 
-  Query: { ...postsResolvers.Query },
+  Query: { ...postsResolver.Query, ...usersResolver.Query },
 
   Mutation: {
     ...usersResolver.Mutation,
-    ...postsResolvers.Mutation,
+    ...postsResolver.Mutation,
     ...commentsResolver.Mutation,
     ...likeResolver.Mutation,
   },
   Subscription: {
-    ...postsResolvers.Subscription,
+    ...postsResolver.Subscription,
   },
 };
 

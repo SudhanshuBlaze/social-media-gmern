@@ -1,4 +1,5 @@
 const User = require("../../models/User");
+const { ApolloError } = require("apollo-server");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { SECRET_KEY } = require("../../config");
@@ -20,6 +21,7 @@ const generateToken = user => {
     { expiresIn: "1h" }
   );
 };
+
 module.exports = {
   Mutation: {
     async login(_, { username, password }) {
@@ -53,7 +55,7 @@ module.exports = {
     async register(
       _,
       // destructure an object into registerInput which is further destructured
-      { registerInput: { username, email, password, confirmPassword } }
+      { registerInput: { username, email, avatar, password, confirmPassword } }
     ) {
       // Validate user data
       const { errors, valid } = validateRegisterInput(
@@ -78,6 +80,7 @@ module.exports = {
       const newUser = new User({
         email,
         username,
+        avatar,
         password,
         createdAt: new Date().toISOString(),
       });
@@ -94,6 +97,18 @@ module.exports = {
       };
       // console.log(returnObj);
       return returnObj;
+    },
+  },
+
+  Query: {
+    async getUsers() {
+      try {
+        const users = await User.find({});
+        return users;
+      } catch (error) {
+        console.error("Error in 'getUsers'");
+        throw new ApolloError(err);
+      }
     },
   },
 };
