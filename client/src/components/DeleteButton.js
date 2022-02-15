@@ -31,7 +31,7 @@ export default function DeleteButton({ commentId, postId, callback }) {
         proxy.writeQuery({ query: FETCH_POSTS_QUERY, data, variables: postId });
       }
 
-      if (callback) callback(); //because we don't have callback <DeleteButton/> in the "PostCard"
+      if (callback) callback(); //if we are deleting a "post" from "SinglePost" this callback will navigate to "/"
     },
   });
 

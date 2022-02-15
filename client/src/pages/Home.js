@@ -9,6 +9,7 @@ import { useAuth } from "../context/auth";
 
 // since we have cache now, newer 'getPosts' queries will be sent to the 'client' cache and not 'server'
 function Home() {
+  console.log("home");
   const { user } = useAuth();
   const { loading: loadingPosts, data: { getPosts: posts } = {} } =
     useQuery(FETCH_POSTS_QUERY);
@@ -17,7 +18,8 @@ function Home() {
     useQuery(FETCH_USERS_QUERY);
 
   return (
-    <Grid columns={3}>
+    // A grid can double its column width on tablet and mobile sizes.
+    <Grid doubling columns={3}>
       <Grid.Row className="page-title">
         <h1>Recent Posts</h1>
       </Grid.Row>

@@ -40,6 +40,7 @@ function authReducer(state, action) {
 }
 
 function AuthProvider(props) {
+  // only managing state of "user" with reducer
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   function login(userData) {

@@ -14,7 +14,7 @@ export default function PostCard({
 
   const currPostUser = users.find(user => user.username === username);
   const defaultAvatarUrl =
-    "https://react.semantic-ui.com/images/avatar/large/molly.png";
+    "https://www.alpeaudio.com/wp-content/uploads/2021/08/generic_avatar.webp";
 
   // if currPostUser exists then give its avatar else default avatar
   const avatarUrl = currPostUser && (currPostUser.avatar || defaultAvatarUrl);

@@ -62,7 +62,7 @@ export default function SinglePost() {
 
     const currPostUser = users.find(user => user.username === username);
     const defaultAvatarUrl =
-      "https://react.semantic-ui.com/images/avatar/large/molly.png";
+      "https://www.alpeaudio.com/wp-content/uploads/2021/08/generic_avatar.webp";
 
     const avatarUrl = currPostUser && (currPostUser.avatar || defaultAvatarUrl);
 
