@@ -9,7 +9,6 @@ import { useAuth } from "../context/auth";
 
 // since we have cache now, newer 'getPosts' queries will be sent to the 'client' cache and not 'server'
 function Home() {
-  console.log("home");
   const { user } = useAuth();
   const { loading: loadingPosts, data: { getPosts: posts } = {} } =
     useQuery(FETCH_POSTS_QUERY);

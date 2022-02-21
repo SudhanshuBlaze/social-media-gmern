@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Menu } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../context/auth";
 
 export default function MenuBar() {
   const { user, logout } = useAuth();
 
   // we want the "teal" color which signifies "activeItem" to change according to the path we are in it can be '/' or "/login" or "/register". "pathname" contains this data, ex: "/register"
-  const pathname = window.location.pathname;
+  const { pathname } = useLocation();
   const path = pathname === "/" ? "home" : pathname.substring(1); //we don't want to include "/" symbol if it's "/login" or "/register"
 
   const [activeItem, setActiveItem] = useState(path);

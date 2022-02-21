@@ -40,7 +40,7 @@ function App() {
               }
             />
 
-            <Route exact path="/posts/:id" element={<SinglePost />} />
+            <Route exact path="/posts/:postId" element={<SinglePost />} />
           </Routes>
         </Container>
       </AuthProvider>

@@ -13,13 +13,13 @@ import moment from "moment";
 import { useAuth } from "../context/auth";
 import LikeButton from "../components/LikeButton";
 import DeleteButton from "../components/DeleteButton";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import MyPopup from "../util/MyPopup";
 import { FETCH_USERS_QUERY } from "../util/fetchUsersQuery";
 
 export default function SinglePost() {
-  const postId = window.location.pathname.substring(7);
+  const { postId } = useParams(); // accessing the parameters from the path
 
   const { user } = useAuth();
   const navigate = useNavigate();
