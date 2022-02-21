@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu } from "semantic-ui-react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../context/auth";
@@ -54,5 +54,6 @@ export default function MenuBar() {
       </Menu.Menu>
     </Menu>
   );
+
   return menuBar;
 }

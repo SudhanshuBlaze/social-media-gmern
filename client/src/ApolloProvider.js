@@ -5,7 +5,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { createHttpLink } from "apollo-link-http";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { setContext } from "apollo-link-context";
-//v1: http://localhost:5000/
+// http://localhost:5000/
 const httpLink = createHttpLink({
   uri: "https://social-media-server-v2.herokuapp.com/", //our server running in this port
 });

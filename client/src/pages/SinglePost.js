@@ -20,7 +20,6 @@ import { FETCH_USERS_QUERY } from "../util/fetchUsersQuery";
 
 export default function SinglePost() {
   const { postId } = useParams(); // accessing the parameters from the path
-
   const { user } = useAuth();
   const navigate = useNavigate();
   const [comment, setComment] = useState("");
