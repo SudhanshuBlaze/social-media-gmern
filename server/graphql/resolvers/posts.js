@@ -18,6 +18,7 @@ module.exports = {
     async getPost(_, { postId }) {
       try {
         const post = await Post.findById(postId);
+        console.log(post);
         if (post) return post;
         else throw new Error("Post not found");
       } catch (err) {
@@ -40,7 +41,7 @@ module.exports = {
         createdAt: new Date().toISOString(),
       });
       const post = await newPost.save();
-
+      console.log(post);
       context.pubsub.publish("NEW_POST", {
         newPost: post,
       });
