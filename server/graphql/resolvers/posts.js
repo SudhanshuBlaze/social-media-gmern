@@ -30,7 +30,6 @@ module.exports = {
   Mutation: {
     async createPost(_, { body }, context) {
       const user = checkAuth(context);
-      // console.log(user);
 
       if (body.trim() === "")
         throw new UserInputError("Post body must not be empty");
@@ -41,10 +40,6 @@ module.exports = {
         createdAt: new Date().toISOString(),
       });
       const post = await newPost.save();
-      console.log(post);
-      context.pubsub.publish("NEW_POST", {
-        newPost: post,
-      });
 
       return post;
     },
@@ -65,12 +60,6 @@ module.exports = {
         console.error("Error:Cannot delete Post");
         throw new Error(error);
       }
-    },
-  },
-
-  Subscription: {
-    newPost: {
-      subscribe: (_, __, { pubsub }) => pubsub.asyncIterator("NEW_POST"),
     },
   },
 };

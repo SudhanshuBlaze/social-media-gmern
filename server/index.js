@@ -5,13 +5,11 @@ const colors = require("colors");
 const typeDefs = require("./graphql/typeDefs");
 const resolvers = require("./graphql/resolvers"); //since it's in 'index' we need not specify
 
-const pubsub = new PubSub();
-
 // server instance: apollo uses express server only internally
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req }) => ({ req, pubsub }), //to check whether the user is authenticated
+  context: ({ req }) => ({ req }), //to check whether the user is authenticated
 });
 
 const PORT = process.env.PORT || 5000;

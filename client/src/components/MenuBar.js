@@ -11,7 +11,10 @@ export default function MenuBar() {
   const path = pathname === "/" ? "home" : pathname.substring(1); //we don't want to include "/" symbol if it's "/login" or "/register"
 
   const [activeItem, setActiveItem] = useState(path);
-  const handleItemClick = (e, { name }) => setActiveItem(name);
+
+  useEffect(() => {
+    setActiveItem(path);
+  }, [path]);
 
   const menuBar = user ? (
     <Menu pointing secondary size="massive" color="teal">
@@ -31,7 +34,6 @@ export default function MenuBar() {
       <Menu.Item
         name="home"
         active={activeItem === "home"}
-        onClick={handleItemClick}
         as={Link} //semantic ui components has this feature: these components will behave like <Link/>
         to="/"
       />
@@ -40,14 +42,12 @@ export default function MenuBar() {
         <Menu.Item
           name="login"
           active={activeItem === "login"}
-          onClick={handleItemClick}
           as={Link}
           to="/login"
         />
         <Menu.Item
           name="register"
           active={activeItem === "register"}
-          onClick={handleItemClick}
           as={Link}
           to="/register"
         />
