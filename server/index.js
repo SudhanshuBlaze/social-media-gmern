@@ -17,7 +17,7 @@ mongoose
   .connect(MONGODB, { useNewUrlParser: true })
   .then(res => {
     console.log(`MongoDB Connected:${res.connection.host}`.bgMagenta.bold);
-    return server.listen({ port: PORT }); //returns a promise
+    return server.listen({ port: PORT });
   })
   .then(res => {
     console.log(`Server running on ${res.url}`.brightBlue.underline);

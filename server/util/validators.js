@@ -7,7 +7,7 @@ module.exports.validateRegisterInput = (
 ) => {
   const errors = {};
 
-  const regExPassword = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+  // const regExPassword = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
   const regExEmail =
     /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
 
@@ -20,9 +20,9 @@ module.exports.validateRegisterInput = (
   }
 
   if (password.trim() === "") errors.password("Password must not be empty");
-  else if (!password.match(regExPassword))
-    errors.password =
-      "Password must have atleast 8 character, with at least a symbol, upper and lower case letters and a number";
+  // else if (!password.match(regExPassword))
+  //   errors.password =
+  //     "Password must have atleast 8 character, with at least a symbol, upper and lower case letters and a number";
   else if (password !== confirmPassword)
     errors.confirmPassword = "Passwords must match";
 

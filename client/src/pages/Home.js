@@ -46,3 +46,5 @@ function Home() {
 }
 
 export default Home;
+
+//Prevent Error with Default '{}' when Destructuring :  https://www.samanthaming.com/tidbits/24-prevent-error-with-default-object-when-destructuring/

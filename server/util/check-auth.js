@@ -8,8 +8,6 @@ module.exports = context => {
   const authHeader = context.req.headers.authorization;
 
   if (authHeader) {
-    // console.log("authHeader-> " + authHeader);
-
     // data format of authHeader= "Bearer eyJhbGciOi..."
     const token = authHeader.split("Bearer ")[1];
 

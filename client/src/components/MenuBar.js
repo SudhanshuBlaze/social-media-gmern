@@ -18,12 +18,7 @@ export default function MenuBar() {
 
   const menuBar = user ? (
     <Menu pointing secondary size="massive" color="teal">
-      <Menu.Item
-        name={user.username}
-        active
-        as={Link} //semantic ui components has this feature: these components will behave like <Link/>
-        to="/"
-      />
+      <Menu.Item name={user.username} active as={Link} to="/" />
 
       <Menu.Menu position="right">
         <Menu.Item name="logout" onClick={logout} as={Link} to="/login" />
@@ -31,12 +26,7 @@ export default function MenuBar() {
     </Menu>
   ) : (
     <Menu pointing secondary size="massive" color="teal">
-      <Menu.Item
-        name="home"
-        active={activeItem === "home"}
-        as={Link} //semantic ui components has this feature: these components will behave like <Link/>
-        to="/"
-      />
+      <Menu.Item name="home" active={activeItem === "home"} as={Link} to="/" />
 
       <Menu.Menu position="right">
         <Menu.Item

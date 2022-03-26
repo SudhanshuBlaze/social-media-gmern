@@ -112,3 +112,5 @@ module.exports = {
     },
   },
 };
+
+// NOTE: A not so clever hacker can get the payload (which is publically readable), change some data, base64 encode it and replace it in the token. But when the payload or header changes, it becomes inconstant with the signature. And since signature can be only constructed with the secret which is not publically available, hence JWT is one of the safest ways to authenticate HTTP requests.
