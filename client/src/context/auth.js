@@ -71,4 +71,4 @@ export { AuthContext, AuthProvider, useAuth };
 
 //  JWTs can be either signed, encrypted or both. If a token is signed, but not encrypted, everyone can read its contents, but when you don't know the SECRET key, you can't change it.
 
-// Our jwt is just signed and not encrypted hence it can be decoded by using just a node package, but if some tries to alter the content then the signature will also be altered accordingly, and if the signature does not matches with content then this token will be identified as inavlid. Signature can only be decoded using the Secret Key.
+// Our jwt is just signed and not encrypted hence it can be decoded by using just a node package, but if someone tries to alter the content then the signature will also be altered accordingly, and if the signature does not matches with content then this token will be identified as inavlid. Signature can only be decoded using the Secret Key.

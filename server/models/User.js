@@ -8,6 +8,5 @@ const userSchema = new Schema({
   avatar: String,
 });
 
-//returns the model which can be used to create new doc/articles,
-//all the articles will be saved in "Users" collection
+//returns the model which can be used to create new doc/articles, all the articles will be saved in "Users" collection
 module.exports = model("User", userSchema);

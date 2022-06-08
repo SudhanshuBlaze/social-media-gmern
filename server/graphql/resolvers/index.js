@@ -12,8 +12,6 @@ module.exports = {
 
     commentCount: parent => parent.comments.length,
   },
-  // using spread operators because different resolvers has been put in different files
-  // we need to grab hold of them and put them together here in a single object
 
   Query: { ...postsResolver.Query, ...usersResolver.Query },
 

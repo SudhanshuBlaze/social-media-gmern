@@ -24,7 +24,6 @@ export default function Login() {
     // this "update" function will be triggered when the mutation is successful
     update(_, { data: { login: userData } }) {
       login(userData);
-      // console.log(userData);
       navigate("/");
     },
     onError(err) {
