@@ -19,7 +19,6 @@ import MyPopup from "../util/MyPopup";
 import { FETCH_USERS_QUERY } from "../util/fetchUsersQuery";
 
 export default function SinglePost() {
-  43;
   const { postId } = useParams(); // accessing the parameters from the path
   const { user } = useAuth();
   const navigate = useNavigate();

@@ -8,7 +8,7 @@ import { setContext } from "apollo-link-context";
 
 // http://localhost:5000/
 const httpLink = createHttpLink({
-  uri: "https://social-media-server-v2.herokuapp.com/", //our server running in this port
+  uri: "https://socialmedia-backend.onrender.com/", //our server running in this port
 });
 
 // this function acts as a middleware, this function is executed every time we send a http request from client to server, in this way our "Authorization Header" gets updated with the "token"
